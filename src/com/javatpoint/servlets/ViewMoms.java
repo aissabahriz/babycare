@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.javatpoint.bean.Baby;
+import com.javatpoint.bean.Moms;
 import com.javatpoint.dao.BabyDao;
 
 /**
@@ -21,7 +22,6 @@ import com.javatpoint.dao.BabyDao;
 public class ViewMoms extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			response.setContentType("text/html");
 			PrintWriter out=response.getWriter();
 			
@@ -33,32 +33,30 @@ public class ViewMoms extends HttpServlet {
 			out.println("</head>");
 			out.println("<body>");
 			request.getRequestDispatcher("navigation.html").include(request, response);
-			out.print(" <a href='ViewBabyNameBySex?sex=Boy' class='btn btn-primary' role='button'>Boy</a> ");
-			out.print(" <a href='ViewBabyNameBySex?sex=Girl' class='btn btn-primary' role='button'>Girl</a> ");
 			
 			
 			HttpSession session=request.getSession(false);
 			if(session==null||session.getAttribute("adminlogin")==null){
 				
 			}else{
-				out.print(" <a href='AddMomsForm' class='btn btn-primary' role='button'>Add Moms</a> ");
+				out.print(" <a href='AddBabySitterForm' class='btn btn-primary' role='button'>Add Babysitter</a> ");
 				out.print(" <a href='LogoutAdmin' class='btn btn-primary' role='button'>Logout</a> ");
 			}
 			
 			request.getRequestDispatcher("atoz.html").include(request, response);
 			
 			out.println("<h1>View Moms</h1>");
-			List<Baby> list=BabyDao.getAllRecords();
+			List<Moms> list=BabyDao.getMomsAllRecords();
 			out.print("<table class='table table-bordered table-striped'>");
-			out.println("<tr><th>Id</th><th>Name</th><th>phone</th><th>payment</th><th>Weight</th><th>Delete</th></tr>");
-			for(Baby b:list){
-				out.println("<tr><td>"+b.getId()+"</td><td>"+b.getName()+"</td><td>"+b.getAge()+"</td><td>"+b.getSex()+"</td><td>"+b.getWeight()+"</td>");
+			out.println("<tr><th>Id</th><th>Full Name</th><th>Username</th><th>Email</th><th>phone</th><th>Delete</th></tr>");
+			for(Moms m:list){
+				out.println("<tr><td>"+m.getId()+"</td><td>"+m.getFullname()+"</td><td>"+m.getUsername()+"</td><td>"+m.getEmail()+"</td><td>"+m.getPhone()+"</td>");
 				
 				if(session==null||session.getAttribute("adminlogin")==null){
 					out.println("<td>Delete</td>");
 					
 				}else{
-				out.println("<td><a href='DeleteBabyName?id="+b.getId()+"'>Delete</a></td>");
+				out.println("<td><a href='DeleteMoms?id="+m.getId()+"'>Delete</a></td>");
 				}
 				out.println("</tr>");
 			}
@@ -68,4 +66,4 @@ public class ViewMoms extends HttpServlet {
 		}
 	}
 
-}
+

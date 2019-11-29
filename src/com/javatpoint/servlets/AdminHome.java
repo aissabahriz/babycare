@@ -23,8 +23,9 @@ public class AdminHome extends HttpServlet {
 		
 		request.getRequestDispatcher("header.html").include(request, response);
 		out.println("<h1>Admin Home</h1>");
-		out.print(" <a href='AddBabyNameForm' class='btn btn-primary' role='button'>Add Baby Name</a> ");
 		out.print(" <a href='ViewBabyName' class='btn btn-primary' role='button'>View Baby Names</a> ");
+		out.print(" <a href='AddBabySitterForm' class='btn btn-primary' role='button'>Add Babysitter</a> ");
+		out.print(" <a href='ViewMoms' class='btn btn-primary' role='button'>View Moms</a> ");
 		out.print(" <a href='LogoutAdmin' class='btn btn-primary' role='button'>Logout</a> ");
 				
 		request.getRequestDispatcher("footer.html").include(request, response);

@@ -1,4 +1,4 @@
-<div class="container">
+div class="container">
   <h1>Add Baby Name</h1>
 
 <form style="width:300px" action="AddBabyName" method="post">
@@ -7,8 +7,8 @@
     <input type="text" name="name" class="form-control" id="name1" placeholder="Name"/>
   </div>
   <div class="form-group">
-    <label for="meaning1">Meaning:</label>
-    <input type="text" name="meaning" class="form-control" id="meaning1" placeholder="Meaning"/>
+    <label for="weigth1">Weight:</label>
+    <input type="text" name="weigth" class="form-control" id="weigth1" placeholder="Weigth"/>
   </div>
   <div class="form-group">
     <label for="sex1">Sex:</label>
@@ -16,15 +16,15 @@
     <input type="radio" name="sex" value="girl" id="sex1"/>Female
   </div>
   <div class="form-group">
-    <label for="religion1">Religion:</label>
-    <select name="religion" class="form-control" id="religion1">
-    <option>Hindu</option>
-    <option>Muslim</option>
-    <option>Christian</option>
-    <option>Sikh</option>
-    <option>Jews</option>
-    <option>Jain</option>
-    <option>Buddhist</option>
+    <label for="age1">Age:</label>
+    <select name="age" class="form-control" id="age1">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
     </select>
   </div>
   

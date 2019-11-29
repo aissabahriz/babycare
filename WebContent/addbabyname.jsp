@@ -24,6 +24,7 @@
       <ul class="nav navbar-nav">
         <li><a href="index.html">Home</a></li>
         <li class="active"><a href="ViewBabyName">Baby Names</a></li>
+        <li><a href="ViewMoms">Moms</a></li>
         <li><a href="tips.html">Tips</a></li>
         <li><a href="food.html">Food</a></li>
         <li><a href="fashion.html">Fashion</a></li>
@@ -50,8 +51,8 @@
   </div>
   <div class="form-group">
     <label for="sex1">Sex:</label>
-    <input type="radio" name="sex" value="boy" id="sex1"/>Male
-    <input type="radio" name="sex" value="girl" id="sex1"/>Female
+    <input type="radio" name="sex" value="boy" id="sex1"/>Boy
+    <input type="radio" name="sex" value="girl" id="sex1"/>Girl
   </div>
   <div class="form-group">
     <label for="age1">Age:</label>

@@ -13,12 +13,38 @@ public class BabyDao {
 
 	public static java.sql.Connection getCon(){
 		java.sql.Connection con=null;
+		
 		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/test?autoReconnect=true&&amp;useSSL=false","baby","baby");
+			con=DriverManager.getConnection("jdbc:mysql://localhost:3306/babyBD?autoReconnect=true&&amp;useSSL=false","baby","baby");
 		}catch(Exception e){System.out.println(e);}
 		return con;
+	
 	}
+	 public static boolean existUser(String email,String password)
+	    {
+	        String query = "select * from moms where email = ? and password = ?";
+	        try
+	        {
+	        	java.sql.Connection con=getCon();
+	            java.sql.PreparedStatement ps = con.prepareStatement(query);
+	            ps.setString(1, email);
+	           ps.setString(2, password);
+	            ResultSet rs = ps.executeQuery();
+	            if(rs.next())
+	            {
+	                return true;
+	            }
+	            return false;
+	        }
+	        catch(Exception e)
+	        {
+	            e.printStackTrace();
+	            return false;
+	        }
+	               
+	        
+	    }
 	
 	public static int save(Baby b){
 		int status=0;
@@ -38,10 +64,12 @@ public class BabyDao {
 		int status=0;
 		try{
 			java.sql.Connection con=getCon();
-			java.sql.PreparedStatement ps=con.prepareStatement("insert into moms(fullname,phone,payment) values(?,?,?)");
+			java.sql.PreparedStatement ps=con.prepareStatement("insert into moms(fullname,username,email,password,phone) values(?,?,?,?,?)");
 			ps.setString(1,m.getFullname());
-			ps.setInt(2,m.getPhone());
-			ps.setInt(3,m.getPayment());
+			ps.setString(2,m.getUsername());
+			ps.setString(3,m.getEmail());
+			ps.setString(4,m.getPassword());
+			ps.setInt(5,m.getPhone());
 			status=ps.executeUpdate();
 			con.close();
 		}catch(Exception e){System.out.println(e);}
@@ -139,7 +167,7 @@ public class BabyDao {
 		List<Baby> list=new ArrayList<Baby>();
 		try{
 			java.sql.Connection con=getCon();
-			java.sql.PreparedStatement ps=con.prepareStatement("select * from babyname where religion=? ");
+			java.sql.PreparedStatement ps=con.prepareStatement("select * from babyname where sex=? ");
 			ps.setString(1,sex);
 			ResultSet rs=ps.executeQuery();
 			while(rs.next()){
@@ -154,5 +182,50 @@ public class BabyDao {
 			con.close();
 		}catch(Exception e){System.out.println(e);}
 		return list;
+	}
+
+	public static List<Moms> getMomsAllRecords() {
+		
+		List<Moms> list=new ArrayList<Moms>();
+		try{
+			java.sql.Connection con=getCon();
+			java.sql.PreparedStatement ps=con.prepareStatement("select * from moms");
+			ResultSet rs=ps.executeQuery();
+			while(rs.next()){
+				Moms m=new Moms();
+				m.setId(rs.getInt(1));
+				m.setFullname(rs.getString(2));
+				m.setUsername(rs.getString(3));
+				m.setEmail(rs.getString(4));
+				m.setPassword(rs.getString(5));
+				m.setPhone(rs.getInt(6));
+				list.add(m);
+			}
+			con.close();
+		}catch(Exception e){System.out.println(e);}
+		return list;
+	}
+	public static String getUserName() {
+		 String query = "select usernam from moms ";
+	        try
+	        {
+	        	java.sql.Connection con=getCon();
+	            java.sql.PreparedStatement ps = con.prepareStatement(query);
+	            
+	          
+	            ResultSet rs = ps.executeQuery();
+	            Moms U = new Moms();
+				U.setUsername(rs.getString(1));
+	            if(rs.next())
+	            {
+	                return getUserName();
+	            }
+	            return null;
+	        }
+	        catch(Exception e)
+	        {
+	            e.printStackTrace();
+	            return null;
+	        }
 	}
 }

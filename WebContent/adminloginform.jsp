@@ -23,7 +23,6 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="index.html">Home</a></li>
-        <li><a href="ViewBabyName">Baby Names</a></li>
         <li><a href="tips.html">Tips</a></li>
         <li><a href="food.html">Food</a></li>
 		<li><a href="product.html">Product</a></li>

@@ -11,8 +11,8 @@ import javax.servlet.http.HttpSession;
 public class AddBabyNameForm extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(false);
-		if(session==null||session.getAttribute("adminlogin")==null){
-			request.getRequestDispatcher("adminloginform.jsp").include(request, response);
+		if(session==null||session.getAttribute("momslogin")==null){
+			request.getRequestDispatcher("momsloginform.jsp").include(request, response);
 		}else{
 			request.getRequestDispatcher("addbabyname.jsp").include(request, response);
 		}
